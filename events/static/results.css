@@ -64,28 +64,3 @@ button:hover, a:hover {
 h1{
   font-size: 26px;
 }
-
-ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-}
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
-ul.gray {
-    border: 1px solid #e7e7e7;
-    background-color: #f3f3f3;
-}
-ul.horizontal {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}

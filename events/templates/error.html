@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Github searcher</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'results.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'navbar.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
 </head>
-<body>
-<h1> Problem Occurred</h1>
+<header>
+<div class="topnav">
+  <a href="home">Home</a>
+  <a href="candidates">Candidates</a>
+</div>
+</header>
+
+<body style=" background-size: cover; background:#34495e;">
+<h1 style=" text-align: center; font-size: 30px; position: fixed; top:100px; color: #eeeeee"> Error Occurred, Query you were looking for couldn't be found</h1>
+
 </body>
 </html>
