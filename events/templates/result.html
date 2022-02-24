@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Github searcher</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'results.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'navbar.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet">
+</head>
+<header>
+<div class="topnav">
+  <a href="home.html">Home</a>
+  <a href="/candidates.html">Candidates</a>
+</div>
+</ul>
+</header>
+
+<body style=" background-size: cover; background:#34495e;">
+<H1>Github Searcher</H1>
+<div class="cards">
+    {% for user in Users_list %}
+    <div class="card">
+      <img class="card_img" src="{{user.avatar }}" alt="{{ user.name }}" style="width:100%">
+      <div class="card_cont">
+        <h1>{{ user.name}}</h1>
+
+          <p>{{ user.location}}</p>
+                <p>{{ user.language }} </p>
+         <p><button onclick="location.href = '{{ user.url }}';" ><a href="{{ user.url }}"></a>Follow</button></p>
+    </div>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
