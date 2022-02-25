@@ -24,10 +24,12 @@
     <div class="card">
       <img class="card_img" src="{{user.avatar }}" alt="{{ user.name }}" style="width:100%">
       <div class="card_cont">
-        <h1>{{ user.name}}</h1>
 
-          <p>{{ user.location}}</p>
-                <p>{{ user.language }} </p>
+        <h1>{{ user.name}}</h1>
+        <p>Nickname: {{ user.login }}</p>
+          <p>Location : {{ user.location}}</p>
+                <p>email: {{ user.email }}</p>
+
          <p><button onclick="location.href = '{{ user.url }}';" ><a href="{{ user.url }}"></a>Follow</button></p>
 
     </div>
