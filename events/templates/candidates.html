@@ -27,6 +27,8 @@
           <p>{{ user.location}}</p>
                 <p>{{ user.language }} </p>
          <p><button onclick="location.href = '{{ user.url }}';" ><a href="{{ user.url }}"></a>Follow</button></p>
+                    <p><a href="{% url "delete_cand" user.id %}" >Delete </a> </p>
+
     </div>
         </div>
     {% endfor %}

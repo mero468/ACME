@@ -1,7 +1,7 @@
 import json
 
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from events.models import User
 
@@ -20,6 +20,11 @@ def candidates(request):
     users = User.objects.all()
     return render(request, 'candidates.html', {'Users_list': users})
 
+def delete_cand(request,user_id):
+    object = User.objects.get(pk=user_id)
+    object.delete()
+    users = User.objects.all()
+    return render(request, 'candidates.html', {'Users_list': users})
 
 def result(request):
     # We Get the form's value
