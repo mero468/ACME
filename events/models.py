@@ -12,10 +12,10 @@ class User(models.Model):
     email = models.CharField(max_length=1000)
 
 class Candidates(models.Model):
-    name = models.CharField(max_length=100)
-    login = models.CharField(max_length=1000)
+    name = models.CharField(max_length=100,null=True)
+    login = models.CharField(max_length=1000,null=True)
     id = models.CharField(max_length=100).primary_key
-    avatar = models.CharField(max_length=1000)
-    location = models.CharField(max_length=100)
-    url = models.CharField(max_length=1000)
-    email = models.CharField(max_length=1000,null=True)
+    avatar = models.CharField(max_length=1000,null=True)
+    location = models.CharField(max_length=100,null=True)
+    url = models.CharField(max_length=1000,null=True)
+    email = models.CharField(max_length=1000 ,null=True)

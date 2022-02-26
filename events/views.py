@@ -58,28 +58,29 @@ def result(request):
             readfile.close()
             if "total_count" in data2:
                 x = data2['total_count'] - (count * 100)
-                if x <= 0:
-                    # User github api
-                    url2 = 'https://api.github.com/users/' + username
-                    r = requests.get(url2)
-                    data = r.json()
-                    jsonString = json.dumps(data)
-                    with open('json_userdata.json', 'w') as outfile:
-                        outfile.write(jsonString)
-                    outfile.close()
-                    with open('json_userdata.json', 'r') as readfile:
-                        data3 = json.load(readfile)
-                    readfile.close()
-                    login = data3['login']
-                    id = data3['id']
-                    avatar = data3['avatar_url']
-                    url = data3['html_url']
-                    email = data3['email']
-                    name = data3['name']
-                    location = data3['location']
-                    user = Candidates(login=login ,name=name, email=email, id=id, avatar=avatar, url=url, location=location)
-                    user.save()
-                    list_user.append(user)
+                for item in data2['items']:
+                        username=item['login']
+                        # User github api
+                        url2 = 'https://api.github.com/users/' + username
+                        r = requests.get(url2)
+                        data = r.json()
+                        jsonString = json.dumps(data)
+                        with open('json_userdata.json', 'w') as outfile:
+                            outfile.write(jsonString)
+                        outfile.close()
+                        with open('json_userdata.json', 'r') as readfile:
+                            data3 = json.load(readfile)
+                        readfile.close()
+                        login = data3['login']
+                        id = data3['id']
+                        avatar = data3['avatar_url']
+                        url = data3['html_url']
+                        email = data3['email']
+                        name = data3['name']
+                        location = data3['location']
+                        user = Candidates(login=login ,name=name, email=email, id=id, avatar=avatar, url=url, location=location)
+                        user.save()
+                        list_user.append(user)
             else:
                 if "message" in data2:
                     return render(request, "error.html", {})
