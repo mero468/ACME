@@ -42,7 +42,7 @@ def result(request):
         # Url builder we specify that we need 100 people per page maximum amount that can be viewed by the github api
         # Github's api is limited for 10 requests 1000 users only thats why be specific in your searches
         #search api
-        url = 'https://api.github.com/search/users?q=' + username + '+location:' + location + '+language:' + language + '+repos:%3E' + repos + '&page=1' + '&per_page=100'
+        url = 'https://api.github.com/search/users?q=' + username + '+location:' + location + '+language:' + language + '+repos:%3E' + repos + '&page=1' + '&per_page=30'
         r = requests.get(url)
         data = r.json()
         jsonString = json.dumps(data)
