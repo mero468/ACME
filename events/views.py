@@ -42,7 +42,7 @@ def result(request):
         # Url builder we specify that we need 100 people per page maximum amount that can be viewed by the github api
         # Github's api is limited for 10 requests 1000 users only thats why be specific in your searches
         #search api
-        url = 'https://api.github.com/search/users?q=' + username + '+location:' + location + '+language:' + language + '+repos:%3E' + repos + '&page=1' + '&per_page=30'
+        url = 'https://api.github.com/search/users?q=' + username + '+location:' + location + '+language:' + language + '+repos:%3E' + repos + '&page=1' + '&per_page=100'
         r = requests.get(url)
         data = r.json()
         jsonString = json.dumps(data)
@@ -52,34 +52,18 @@ def result(request):
         with open('json_data.json', 'r') as readfile:
             data2 = json.load(readfile)
         readfile.close()
+        if "message" in data2:
+            return render(request, "error.html", {})
         if "total_count" in data2:
-            x = data2['total_count'] - (count * 100)
             for item in data2['items']:
-                username=item['login']
-                # User github api
-                url2 = 'https://api.github.com/users/' + username
-                r = requests.get(url2)
-                data = r.json()
-                jsonString = json.dumps(data)
-                with open('json_userdata.json', 'w') as outfile:
-                    outfile.write(jsonString)
-                outfile.close()
-                with open('json_userdata.json', 'r') as readfile:
-                        data3 = json.load(readfile)
                 readfile.close()
-                login = data3['login']
-                id = data3['id']
-                avatar = data3['avatar_url']
-                url = data3['html_url']
-                email = data3['email']
-                name = data3['name']
-                location = data3['location']
+                login = item['login']
+                id = item['id']
+                avatar = item['avatar_url']
+                url = item['html_url']
+                email = ''
+                name = ''
                 user = Candidates(login=login ,name=name, email=email, id=id, avatar=avatar, url=url, location=location)
                 user.save()
                 list_user.append(user)
-            else:
-                if "message" in data2:
-                    return render(request, "error.html", {})
-                else:
-                    return render(request, "result.html", {'Users_list': set(list_user)})
-        return render(request, "result.html", {'Users_list': set(list_user)})
+        return render(request, "result.html", {'Users_list': list_user})
